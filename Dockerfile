@@ -12,7 +12,8 @@ RUN apt-get update \
 	&& make install \
 	&& mkdir /download \
 	&& cd / \
+	&& touch /aria2/aria2.session \
 	&& rm -rf /aria2_repo \
 	&& apt-get purge -y --auto-remove libssl-dev libexpat1-dev libssh2-1-dev libc-ares-dev zlib1g-dev libsqlite3-dev pkg-config libcppunit-dev autoconf automake autotools-dev autopoint libtool g++ git -y \
 	&& rm -rf /var/lib/apt/lists/*
-CMD [ "aria2c", "--conf-path=/aria2/aria2.conf"]
+CMD [ "aria2c", "--conf-path=/aria2/aria2.conf", "--input-file=/aria2/aria2.session", "--save-session=/aria2/aria2.session" ]
